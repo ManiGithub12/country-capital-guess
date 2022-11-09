@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  input[type=text] {
+    display: block;
+    top: 40%;
+    left: 55%;
+    margin: auto;
+    width: 175px;
+    height: 25px;
+    text-align: left;
+    margin-bottom: 20px;
+    background: white;
+    padding: 6px;
+    font-size: 14px;
+    color: black;
+    border: 2px solid grey;
+    border-radius: 6px;
+  }
+  button[type=submit] {
+    display: block;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    width: 85px;
+    background-color: green;
+    color: white;
+    font-size: 13px;
+    padding: 6px;
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+  } 
+  button:hover{
+    background-color: #4CAF50;
+    cursor: pointer;
+  }
+  @media only screen and (max-width: 600px) {
+  .ftr-position{
+    position: initial;
+    margin-bottom: -70px;
+    }
+  }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Meta tags-->
+    <meta name="author" content="Mani" />
+    <meta property="og:title" content= "Guess Country Capital" />
+    <meta property="og:description" content="Webpage to guess Country Capital" />
+    <meta name="keywords" content="" />
+    <link rel="shortcut icon" type="image/png" href="static/images/favicon.png" />
+    <title>Guess Country Capital</title>
+    <link rel="stylesheet" href="static/style.css" />
+</head>
+<body>
+      <!--Headings-->
+      <h2 style="color: white; text-align: center;">Guess Country Capital</h2>
+      <p style="text-align: center; color: white; font-weight: lighter;">Let's check your knowledge!</p><br>
+      <!--Gif-->
+      <p style="text-align: center;"><img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/001/367/167/datas/original.gif" alt="Country" width="200"/></p>
+      <!--Inputs-->
+<!--      </script>-->
+          <form class="form-main" action="{{ url_for('refresh')}}" method="get">
+              <div align="center">
+                  <text style="text-align: center; color: white; font-weight: lighter;" id="country_heading"> Country Name</text>
+              </div>
+               <div align="center" >
+              <textarea id="country" name="country" rows="1" cols="20"> {{random_country}}</textarea>
+              </div>
+              <button id="refresh" type="submit">Refresh</button><br>
+          </form><br>
+         <form class="form-main" action="{{ url_for('check')}}" method="post">
+          <div align="center">
+              <text style="text-align: center; color: white; font-weight: lighter;" id="capital_heading"> Type capital name below</text>
+          </div>
+         <input type="text" name="capital" id="capital" placeholder="New Delhi" required="required">
+          <button id="check" type="submit">Check</button><br>
+      </form><br>
+      <div align="center">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+     {% endwith %}
+      </div>
+      <!--Instructions-->
+      <section class="guide">
+        <p>
+          STEPS:<br>
+          • Choose a country randomly<br>
+          • Type the capital<br>
+          • Press Check<br>
+        </p>
+      </section>
+</body>
+</html>
